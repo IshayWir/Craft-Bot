@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CraftBot Mid-Project Presentation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #FFF5F7 0%, #E3F2FD 50%, #F3E5F5 100%);
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.7), rgba(63, 81, 181, 0.7), rgba(0, 188, 212, 0.7)),
+                        url("hero.jpg");
+            min-height: 70vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-text {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-text h1 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .hero-text h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #FFF;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: #5E35B1;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B9D, #C44569);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            color: #5E35B1;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .text-block {
+            width: 75%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            margin: 80px auto;
+            font-size: 1.15em;
+            line-height: 1.8;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .text-block::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #FF6B9D, #9C27B0, #3F51B5, #00BCD4);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        @media screen and (max-width: 800px) {
+            .text-block {
+                width: 90%;
+                padding: 30px;
+                margin: 50px auto;
+                font-size: 1.05em;
+            }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(156, 39, 176, 0.1));
+            border-left: 5px solid #FF6B9D;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(94, 53, 177, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(156, 39, 176, 0.25);
+            border-color: #9C27B0;
+        }
+
+        .role-card h4 {
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            color: #5E35B1;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            line-height: 2;
+        }
+
+        ul li::before {
+            content: '🎨';
+            margin-right: 10px;
+        }
+
+        ol {
+            padding-left: 25px;
+            line-height: 2;
+        }
+
+        ol li {
+            margin-bottom: 15px;
+        }
+
+        strong {
+            color: #5E35B1;
+            font-weight: 600;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(156, 39, 176, 0.15));
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+        }
+
+        .parallax {
+            background: linear-gradient(135deg, rgba(94, 53, 177, 0.85), rgba(156, 39, 176, 0.85), rgba(63, 81, 181, 0.85)),
+                        url("parallax.jpg");
+            height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 100px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .parallax-text {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: white;
+            text-align: center;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            font-weight: 700;
+        }
+
+        @media screen and (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+                height: 300px;
+            }
+        }
+
+        .logo {
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 100px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(227, 242, 253, 0.8));
+            border-radius: 20px 20px 0 0;
+        }
+
+        a {
+            color: #9C27B0;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover {
+            border-bottom-color: #FF6B9D;
+        }
+
+        .stat-box {
+            display: inline-block;
+            background: linear-gradient(135deg, #5E35B1, #3F51B5);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin: 10px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(94, 53, 177, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="hero-image">
+    <div class="hero-text">
+        <h1>CraftBot: Your Watercolor Assistant</h1>
+        <h2>Ishay, Margaret, and Benjamin</h2>
+    </div>
+</div>
+
+<div class="text-block">
+    <h2>The Problem</h2>
+    <p>Watercolor painting is one of the most sought-after creative hobbies, yet it remains one of the most intimidating for beginners to approach. The barriers to entry are substantial and multifaceted, creating a perfect storm of discouragement that prevents countless aspiring artists from ever picking up a brush.</p>
+    
+    <div class="highlight-box">
+        <p><strong>The Overwhelm Factor:</strong> Walk into any art supply store, and you'll face hundreds of choices—cold press or hot press paper? Student grade or professional? Synthetic or natural hair brushes? Pan or tube paints? For someone just starting out, these decisions feel impossibly complex, often leading to analysis paralysis or expensive purchasing mistakes.</p>
+    </div>
+
+    <p><strong>The Learning Curve Crisis:</strong> Unlike digital art where "undo" is always an option, watercolor is unforgiving. One wrong move—too much water, wrong timing, poor color mixing—can ruin hours of work. Traditional learning resources compound this problem:</p>
+    
+    <ul>
+        <li>YouTube tutorials move too fast and assume prior knowledge</li>
+        <li>Art classes are expensive and time-constrained</li>
+        <li>Books provide static information that can't answer your specific question at 10 PM when you're mid-painting</li>
+        <li>Online communities can be intimidating for true beginners who fear judgment</li>
+    </ul>
+
+    <p><strong>The Confidence Gap:</strong> Perhaps most critically, beginners internalize early failures as proof they "aren't artistic" rather than understanding that watercolor has a steep but navigable learning curve. Without patient, personalized guidance at the moment of struggle, most people abandon the hobby within their first few attempts, never discovering the joy and therapeutic benefits that watercolor painting can provide.</p>
+</div>
+
+<div class="text-block">
+    <h2>The Solution</h2>
+    <p>CraftBot is an AI-powered chatbot specifically engineered to demolish the barriers that prevent people from learning watercolor painting. Think of it as having a patient, knowledgeable art instructor available 24/7, who never judges, always encourages, and meets you exactly where you are in your learning journey.</p>
+
+    <h3>Core Features</h3>
+    
+    <div class="highlight-box">
+        <p><strong>Personalized Supply Guidance:</strong> Instead of overwhelming users with endless options, CraftBot provides curated, budget-conscious supply recommendations based on the user's specific goals, budget, and living situation. It explains the "why" behind each recommendation, transforming confusing jargon into clear, actionable knowledge.</p>
+    </div>
+
+    <p><strong>Step-by-Step Tutorial System:</strong> CraftBot breaks down watercolor techniques into digestible, sequential steps that build confidence progressively. Starting with fundamental exercises like simple gradients and color mixing, users develop muscle memory and intuition before attempting more complex projects. Each tutorial is adaptive—if a user struggles with a particular step, CraftBot can slow down, provide alternative explanations, or suggest preliminary exercises.</p>
+
+    <p><strong>Real-Time Troubleshooting:</strong> This is where CraftBot truly shines. When a user encounters a problem—"My colors look muddy!" or "Why is my paper buckling?"—they can ask immediately and receive specific, contextual help. CraftBot doesn't just provide solutions; it explains the underlying principles (water-to-pigment ratios, paper absorption rates) so users develop genuine understanding, not just memorized fixes.</p>
+
+    <p><strong>Encouraging Personality:</strong> CraftBot is designed with a warm, supportive personality we call "Aqua." Unlike impersonal tutorials or critical art instructors, Aqua celebrates small victories, reframes "mistakes" as learning opportunities, and maintains enthusiasm even when users are frustrated. This emotional support is crucial for maintaining motivation through the challenging early stages of learning.</p>
+
+    <div class="highlight-box">
+        <p><strong>Progressive Complexity:</strong> The bot tracks user progress and suggests next steps appropriately. It never pushes users beyond their skill level but gently encourages growth when they're ready, creating a learning path that feels challenging yet achievable.</p>
+    </div>
+</div>
+
+<div class="parallax">
+    <div class="parallax-text">
+        "Making watercolor accessible, one brushstroke at a time"
+    </div>
+</div>
+
+<div class="text-block">
+    <h2>Implementation Plan</h2>
+    <p>Our three-person team has strategically divided responsibilities to leverage individual strengths while maintaining collaborative oversight of the complete project. This division ensures efficiency while preserving our collective vision for CraftBot.</p>
+
+    <div class="role-grid">
+        <div class="role-card">
+            <h4>Ishay - Content Curator & UX Designer</h4>
+            <p><strong>Primary Responsibilities:</strong></p>
+            <ul>
+                <li>Research and compile watercolor techniques, supply information, and common beginner challenges</li>
+                <li>Create the SystemMemory knowledge base documents</li>
+                <li>Design user journey flows and interaction patterns</li>
+                <li>Develop empathy maps and user personas</li>
+                <li>Test conversational flows for natural feel</li>
+            </ul>
+        </div>
+
+        <div class="role-card">
+            <h4>Margaret - AI Engineer & Prompt Designer</h4>
+            <p><strong>Primary Responsibilities:</strong></p>
+            <ul>
+                <li>Design and refine system prompts that define bot personality</li>
+                <li>Implement retrieval and context management systems</li>
+                <li>Conduct red team testing to identify edge cases and failures</li>
+                <li>Optimize response quality and relevance</li>
+                <li>Document training iterations and improvements</li>
+            </ul>
+        </div>
+
+        <div class="role-card">
+            <h4>Benjamin - Project Manager & Documentation Lead</h4>
+            <p><strong>Primary Responsibilities:</strong></p>
+            <ul>
+                <li>Maintain GitHub repository structure and version control</li>
+                <li>Manage Kanban board and sprint planning</li>
+                <li>Coordinate team meetings and milestone tracking</li>
+                <li>Create comprehensive documentation</li>
+                <li>Prepare final deliverables and presentation materials</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Our Two-Week Development Sprint</h3>
+    <ol>
+        <li><strong>Week 1 - Foundation Building:</strong> Complete SystemMemory knowledge base (Supplies Glossary, Techniques Library, FAQs, Common Mistakes Guide), finalize system prompts, establish testing protocols, and begin initial bot interactions.</li>
+        <li><strong>Week 2 - Refinement & Documentation:</strong> Conduct extensive red team testing, iterate on prompts based on failure cases, optimize response quality, complete all technical documentation, and prepare final presentation materials.</li>
+    </ol>
+</div>
+
+<div class="text-block">
+    <h2>Why CraftBot Matters</h2>
+    
+    <h3>Addressing a Real Need</h3>
+    <p>The global art supplies market exceeds $45 billion annually, with watercolor being one of the fastest-growing segments. Yet surveys show that 68% of purchased art supplies go unused because beginners feel overwhelmed and give up. CraftBot addresses this massive gap between interest and execution, transforming purchase intent into sustained creative practice.</p>
+
+    <div class="highlight-box">
+        <p><strong>Mental Health & Wellbeing:</strong> Art therapy research consistently demonstrates that creative practices like watercolor painting reduce stress, improve focus, and enhance emotional regulation. By making watercolor accessible, CraftBot isn't just teaching a hobby—it's providing a tool for mental wellness that many people desperately need but can't access through traditional, expensive art instruction.</p>
+    </div>
+
+    <h3>Who Benefits?</h3>
+    <ul>
+        <li><strong>Absolute Beginners:</strong> People who've always wanted to paint but never knew where to start now have a judgment-free, patient guide available anytime</li>
+        <li><strong>Budget-Conscious Learners:</strong> Students, retirees, and others who can't afford expensive classes can learn at their own pace without financial barriers</li>
+        <li><strong>Rural & Remote Individuals:</strong> Those without access to local art communities or classes gain expert guidance regardless of location</li>
+        <li><strong>Neurodivergent Learners:</strong> Individuals who struggle in traditional classroom settings can learn at their own pace, repeating information as needed without social pressure</li>
+        <li><strong>Busy Professionals:</strong> People with irregular schedules can learn during stolen moments—15 minutes here, 30 minutes there—whenever it fits their life</li>
+    </ul>
+
+    <h3>Value Proposition & Cost Structure</h3>
+    <p><strong>Cost Comparison:</strong></p>
+    <ul>
+        <li>Traditional art class: $200-500 for 6-8 weeks, fixed schedule</li>
+        <li>Private art tutor: $50-150 per hour, minimum commitments</li>
+        <li>CraftBot: Free or freemium model ($5-10/month for advanced features), available 24/7</li>
+    </ul>
+
+    <div class="highlight-box">
+        <p><strong>The Value We Deliver:</strong> CraftBot democratizes art education by providing expertise-level guidance at a fraction of traditional costs. Users gain not just painting skills but genuine artistic literacy—understanding color theory, composition, material properties, and creative problem-solving. This knowledge transfers to other creative domains, making CraftBot an investment in lifelong creative capability.</p>
+    </div>
+
+    <p><strong>Broader Impact:</strong> By lowering barriers to creative practice, CraftBot contributes to more inclusive arts communities. When more people from diverse backgrounds can participate in art-making, our collective creative culture becomes richer and more representative. This isn't just about individual skill development—it's about cultural democratization.</p>
+</div>
+
+<div class="text-block">
+    <h2>Project Deliverables</h2>
+    <p>What we're submitting for final evaluation:</p>
+
+    <div class="highlight-box">
+        <p><strong>1. Working CraftBot Chatbot</strong> - A functional AI assistant that answers watercolor questions, provides supply recommendations, teaches techniques, and troubleshoots common problems.</p>
+    </div>
+
+    <div class="highlight-box">
+        <p><strong>2. SystemMemory Knowledge Base</strong> - Curated files including supply glossaries, technique guides, FAQs, and common mistakes documentation.</p>
+    </div>
+
+    <div class="highlight-box">
+        <p><strong>3. Complete GitHub Repository</strong> - Organized project files with version history, documentation, Kanban board tracking, and all source materials.</p>
+    </div>
+
+    <div class="highlight-box">
+        <p><strong>4. Technical Documentation</strong> - README, prompt engineering process (Training.md), system prompts, and testing results.</p>
+    </div>
+
+    <div class="highlight-box">
+        <p><strong>5. UX Research Materials</strong> - User personas, empathy maps, journey storyboards, and usability testing insights.</p>
+    </div>
+
+    <div class="highlight-box">
+        <p><strong>6. This Presentation Website</strong> - Interactive showcase of our project using modern web design techniques.</p>
+    </div>
+</div>
+
+<div class="text-block">
+    <h2>Questions?</h2>
+    <p>You can follow our progress and see all our documentation on our <a href="#">GitHub Repository</a>.</p>
+    <p>We welcome feedback, suggestions, and collaboration opportunities as we continue developing CraftBot.</p>
+</div>
+
+<div class="logo">
+    <p style="font-size: 1.2em; color: #5E35B1;"><strong>CraftBot Project Team</strong></p>
+    <p><em>Making watercolor accessible through AI innovation</em></p>
+    <p style="margin-top: 30px;"><strong>Built with <a href="https://pitt-fuego.github.io/Pitt-Fuego-Coding-Tools/">Pitt Fuego</a></strong></p>
+    <p><em>Why make a spark when you can light a fire?</em></p>
+</div>
+
+</body>
+</html>
